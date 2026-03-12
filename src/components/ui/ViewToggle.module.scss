@@ -1,0 +1,42 @@
+@use "../../styles/tokens" as *;
+@use "../../styles/types" as *;
+
+.toggle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 30px;
+  width: 90px;
+  border-radius: 50px;
+  border: solid 1px;
+  border-color: $c-fg-primary;
+}
+
+.toggle > button {
+  @include navMaj;
+  position: relative;
+  z-index: 2;
+  color: $c-fg-primary;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  transition: 0.5ms linear;
+}
+
+.toggle > span {
+  position: absolute;
+  border-radius: 50px;
+  height: 100%;
+  background-color: $c-fg-primary;
+  z-index: 1;
+  width: calc(50%);
+  left: 0px;
+  border: none;
+}
+
+.toggle > .isActive {
+  color: $c-fg-primary-selected;
+}
