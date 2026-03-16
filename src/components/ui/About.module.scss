@@ -64,12 +64,13 @@
   color: white;
   & h1 {
     @include h3;
+    width: 45%;
     color: $c-fg-primary;
   }
   & article {
     display: flex;
     flex-direction: column;
-    width: 60%;
+    width: 50%;
     max-width: 100%;
     gap: 10px;
     padding: 10px 0px;
@@ -80,7 +81,7 @@
   }
   & p:last-child {
     @include bodyL;
-    width: 80%;
+    width: 100%;
   }
 }
 //
