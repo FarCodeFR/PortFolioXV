@@ -1,9 +1,11 @@
 import { useEffect, useRef } from "react";
 import styles from "./About.module.scss";
 import gsap from "gsap";
-import CarouselLogo from "../../components/ui/CarouselLogo";
-import Experience from "../../components/ui/Experience";
-import type { AboutProps } from "../../types/about.t";
+import CarouselLogo from "./CarouselLogo";
+import Experience from "./Experience";
+import type { AboutProps } from "../../../types/about.t";
+import Hobby from "./Hobby";
+import Reseau from "./Reseau";
 
 function About({ open, setOpen }: AboutProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -93,6 +95,12 @@ function About({ open, setOpen }: AboutProps) {
         </section>
         <section>
           <Experience />
+        </section>
+        <section>
+          <Hobby />
+        </section>
+        <section>
+          <Reseau />
         </section>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import dataStudent from "../../data/student.json";
+import dataStudent from "../../../data/student.json";
 import styles from "./Experience.module.scss";
 
 function Experience() {

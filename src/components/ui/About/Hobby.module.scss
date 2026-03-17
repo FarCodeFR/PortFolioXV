@@ -1,0 +1,12 @@
+@use "../../../styles/tokens" as *;
+@use "../../../styles/types" as *;
+
+.hobby_about {
+  & h2 {
+    @include h2;
+  }
+  & p {
+    padding-top: 10px;
+    @include bodyM;
+  }
+}

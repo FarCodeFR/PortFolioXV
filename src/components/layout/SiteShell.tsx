@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import About from "../ui/About";
+import About from "../ui/About/About";
 import Footer from "./Footer";
 import Header from "./Header";
 import type { PropsShell } from "../..//types/propsShell.t";
