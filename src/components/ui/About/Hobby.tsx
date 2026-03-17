@@ -6,7 +6,17 @@ function Hobby() {
     <Fragment>
       <div className={styles.hobby_about}>
         <h2>Hobby</h2>
-        <p>Jeux vidéo, Cinéma, Voyager, Cuisiner, </p>
+        <ul>
+          <li>Voyager</li>
+          <li>Randonnée</li>
+          <li>Jeux vidéo</li>
+          <li>Informatique</li>
+          <li>Restaurant</li>
+          <li>Cinéma</li>
+          <li>Pompier volontaire</li>
+          <li>Cuisiner</li>
+        </ul>
+        <img src="public/images/decos/mountain.svg" alt="" />
       </div>
     </Fragment>
   );

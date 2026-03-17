@@ -1,0 +1,16 @@
+@use "../../../styles/tokens" as *;
+@use "../../../styles/types" as *;
+
+.container_contact {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  opacity: 1;
+  background: red;
+  z-index: 100;
+}
+
+// .visible {
+//   opacity: 1;
+//   pointer-events: auto;
+// }

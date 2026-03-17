@@ -2,11 +2,37 @@
 @use "../../../styles/types" as *;
 
 .hobby_about {
+  position: relative;
+  height: 30vh;
   & h2 {
     @include h2;
   }
-  & p {
+  & ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding: 0;
+    max-width: 70%;
+  }
+  & ul > li {
     padding-top: 10px;
-    @include bodyM;
+    @include bodyS;
+    text-transform: uppercase;
+    background-color: $c-bg-secondary;
+    border-radius: $radius-m;
+    padding: 1rem;
+  }
+  & img {
+    position: absolute;
+    right: 0;
+    top: 75%;
+    width: 20vw;
+    height: 30vh;
+    color: white;
+  }
+  & ul > li:hover {
+    background-color: $c-brand-rest;
+    color: $c-bg-primary;
   }
 }

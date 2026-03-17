@@ -1,17 +1,21 @@
-"use client";
 import { useState } from "react";
 import About from "../ui/About/About";
 import Footer from "./Footer";
 import Header from "./Header";
 import type { PropsShell } from "../..//types/propsShell.t";
+import Contact from "../ui/Contact/contact";
 
 function SiteShell({ children }: PropsShell) {
+  // About
   const [open, setOpen] = useState<boolean>(false);
+  // Contact
+  const [openContact, setOpenContact] = useState<boolean>(false);
   return (
     <div className="page">
-      <Header setOpen={setOpen} />
+      <Header setOpen={setOpen} setOpenContact={setOpenContact} />
       {children}
       <About setOpen={setOpen} open={open} />
+      <Contact setOpenContact={setOpenContact} openContact={openContact} />
       <Footer />
     </div>
   );
