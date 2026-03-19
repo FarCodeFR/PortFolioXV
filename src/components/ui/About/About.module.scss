@@ -45,6 +45,7 @@
     padding: 1rem 0 0 0;
     cursor: pointer;
     border: none;
+    width: 6%;
     background: none;
     color: $c-fg-primary;
     @include navMaj;
@@ -79,11 +80,11 @@
     gap: 10px;
     padding: 10px 0px;
   }
-  & p:first-child {
+  & .bio_title {
     @include bodyS;
     color: $c-fg-secondary;
   }
-  & p:last-child {
+  & .bio_description {
     @include bodyL;
     width: 100%;
   }
