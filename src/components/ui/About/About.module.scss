@@ -1,5 +1,5 @@
-@use "../../styles/tokens" as *;
-@use "../../styles/types" as *;
+@use "../../../styles/tokens" as *;
+@use "../../../styles/types" as *;
 
 //
 // Container
@@ -35,19 +35,23 @@
   justify-content: start;
   z-index: 101;
   background: $c-bg-primary;
-  gap: 60px;
+  gap: 100px;
   width: 70%;
   height: 100%;
   margin-left: auto;
   padding: 16px 68px;
   & button {
     text-align: start;
-    padding: 0;
+    padding: 1rem 0 0 0;
     cursor: pointer;
     border: none;
     background: none;
     color: $c-fg-primary;
     @include navMaj;
+  }
+  & button:hover {
+    transition: ease-in 0.2s;
+    color: $c-fg-primary-hover;
   }
 }
 
@@ -88,13 +92,11 @@
 // Logo
 //
 .logo_about {
-  width: max-content;
-  clip-path: inset(0);
+  width: 100%;
 }
 
 .logo_track {
   display: flex;
-  width: 100%;
-  flex-wrap: nowrap;
   gap: 40px;
+  width: max-content;
 }

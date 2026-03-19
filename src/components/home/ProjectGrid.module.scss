@@ -42,6 +42,7 @@
   cursor: pointer;
   & h2 {
     position: absolute;
+    max-width: 60%;
     z-index: 1;
     will-change: transform;
   }
@@ -59,7 +60,7 @@
 }
 
 // Images
-.projectCards :global(img) {
+.projectCards img {
   position: absolute;
   z-index: 0;
   width: 100%;

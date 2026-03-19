@@ -1,4 +1,4 @@
-import data from "../../data/logo.json";
+import data from "../../../data/logo.json";
 import styles from "./CarousselLogo.module.scss";
 
 function CarouselLogo() {
