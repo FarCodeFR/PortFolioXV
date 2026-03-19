@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import styles from "./About.module.scss";
 import gsap from "gsap";
 import CarouselLogo from "./CarouselLogo";
@@ -6,53 +6,74 @@ import Experience from "./Experience";
 import type { AboutProps } from "../../../types/about.t";
 import Hobby from "./Hobby";
 import Reseau from "./Reseau";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(useGSAP);
 
 function About({ open, setOpen }: AboutProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const overlay = containerRef.current;
-    const panel = panelRef.current;
-    if (!overlay || !panel) return;
+  useGSAP(
+    () => {
+      const overlay = containerRef.current;
+      const panel = panelRef.current;
 
-    gsap.killTweensOf(panel);
+      if (!overlay || !panel) return;
 
-    if (open) {
-      gsap.set(trackRef.current, { x: 0, clearProps: "transform" });
+      gsap.killTweensOf([overlay, panel]);
 
-      overlay.classList.add(styles.visible);
+      if (open) {
+        overlay.classList.add(styles.visible);
 
-      gsap.fromTo(
-        panel,
-        { x: "100%" },
-        { x: "0%", duration: 1.5, ease: "power4.out" },
-      );
-    } else {
-      gsap.to(panel, {
-        x: "100%",
-        duration: 0.5,
-        ease: "expo.in",
-        onComplete: () => overlay.classList.remove(styles.visible),
+        gsap.fromTo(
+          panel,
+          { x: "100%" },
+          {
+            x: "0%",
+            duration: 1.5,
+            ease: "power4.out",
+          },
+        );
+      } else {
+        gsap.to(panel, {
+          x: "100%",
+          duration: 0.5,
+          ease: "expo.in",
+          onComplete: () => {
+            overlay.classList.remove(styles.visible);
+          },
+        });
+      }
+    },
+    {
+      scope: containerRef,
+      dependencies: [open],
+    },
+  );
+
+  useGSAP(
+    () => {
+      const track = trackRef.current;
+      if (!track || !open) return;
+
+      const tween = gsap.to(track, {
+        xPercent: -30,
+        duration: 20,
+        repeat: -1,
+        ease: "none",
       });
-    }
-  }, [open]);
 
-  useEffect(() => {
-    const track = trackRef.current;
-
-    const tween = gsap.to(track, {
-      xPercent: -30,
-      duration: 20,
-      repeat: -1,
-      ease: "none",
-    });
-
-    return () => {
-      tween.kill();
-    };
-  }, []);
+      return () => {
+        tween.kill();
+      };
+    },
+    {
+      scope: containerRef,
+      dependencies: [open],
+    },
+  );
 
   return (
     <div ref={containerRef} className={styles.container_blure}>
