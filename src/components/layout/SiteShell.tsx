@@ -3,7 +3,7 @@ import About from "../ui/About/About";
 import Footer from "./Footer";
 import Header from "./Header";
 import type { PropsShell } from "../..//types/propsShell.t";
-import Contact from "../ui/Contact/contact";
+import Contact from "../ui/Contact/Contact";
 
 function SiteShell({ children }: PropsShell) {
   // About
@@ -14,8 +14,8 @@ function SiteShell({ children }: PropsShell) {
     <div className="page">
       <Header setOpen={setOpen} setOpenContact={setOpenContact} />
       {children}
-      <About setOpen={setOpen} open={open} />
       <Contact setOpenContact={setOpenContact} openContact={openContact} />
+      <About setOpen={setOpen} open={open} />
       <Footer />
     </div>
   );
