@@ -1,28 +1,94 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import styles from "./Contact.module.scss";
 import type { ContactProps } from "../../../types/contact.t";
+import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
-function Contact({ setOpenContact, openContact }: ContactProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  console.log(openContact, setOpenContact);
+gsap.registerPlugin(useGSAP);
 
-  useEffect(() => {
-    const panel = containerRef.current;
-    if (!panel) {
-      return;
-    } else if (openContact === true) {
-      panel.classList.add(styles.visible);
-      // panel.timeline;
-    }
-  }, [openContact]);
+function Contact({ setOpenContact, openContact }: ContactProps) {
+  const contactRef = useRef<HTMLDivElement>(null);
+  const shapeRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      const panel = contactRef.current;
+      const shape = shapeRef.current;
+      const content = contentRef.current;
+
+      if (!panel || !shape || !content) return;
+
+      gsap.killTweensOf([panel, shape, content]);
+      let tl: gsap.core.Timeline | undefined;
+      if (openContact) {
+        panel.classList.add(styles.visible);
+
+        const tl = gsap.timeline();
+
+        tl.set(content, { opacity: 0, y: 20 })
+          .fromTo(
+            shape,
+            {
+              scale: 0,
+              rotate: 0,
+              transformOrigin: "center center",
+            },
+            {
+              scale: 80,
+              rotate: 250,
+              duration: 1.8,
+              ease: "power4.inOut",
+            },
+          )
+          .to(
+            content,
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.5,
+              ease: "power2.out",
+            },
+            "-=0.2",
+          );
+      } else {
+        tl = gsap.timeline({
+          onComplete: () => {
+            panel.classList.remove(styles.visible);
+          },
+        });
+
+        tl.to(content, {
+          opacity: 0,
+          y: 20,
+          duration: 0.25,
+          ease: "power2.in",
+        }).to(shape, {
+          scale: 0,
+          rotate: 0,
+          duration: 0.8,
+          ease: "power4.inOut",
+        });
+      }
+      return () => {
+        tl?.kill();
+      };
+    },
+    {
+      scope: contactRef,
+      dependencies: [openContact],
+    },
+  );
 
   return (
-    <div ref={containerRef} className={`${styles.container_contact}`}>
-      <button type="button" onClick={() => setOpenContact(false)}>
-        Closed
-      </button>
-      <h1>Test</h1>
+    <div ref={contactRef} className={styles.container_contact}>
+      <div ref={shapeRef} className={styles.bg_shape} />
+      <div ref={contentRef} className={styles.content}>
+        <button type="button" onClick={() => setOpenContact(false)}>
+          Closed
+        </button>
+        <h1>Test</h1>
+      </div>
     </div>
   );
 }
